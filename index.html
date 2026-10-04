@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b13">
+  <meta name="description" content="A neon-lit arcade of quick, original browser games.">
+  <title>PLAYFORM — The browser arcade</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="games.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Playform home">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span>playform<span class="brand-period">.</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#library">Discover</a>
+      <a class="nav-link" href="#library" data-filter-link="favorites">My games <span id="favorite-count" class="nav-count">0</span></a>
+    </nav>
+    <div class="topbar-right">
+      <div class="profile-chip"><span class="profile-avatar">P</span><span>Player one</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR NEXT FAVORITE IS HERE</div>
+        <h1 id="hero-title">Press play.<br><span>Lose track of time.</span></h1>
+        <p>A whole universe of bite-sized games. No downloads, no waiting — just good times.</p>
+        <a class="primary-button" href="#library">Explore the arcade <span aria-hidden="true">↘</span></a>
+        <div class="hero-proof"><div class="avatar-stack"><span>✦</span><span>◈</span><span>●</span></div><span><strong>100 games</strong> ready to play</span></div>
+      </div>
+      <div class="hero-art" aria-label="Featured game artwork: neon space arcade">
+        <div class="hero-grid"></div>
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-sun"></div>
+        <div class="hero-planet"></div>
+        <div class="hero-asteroid asteroid-one"></div><div class="hero-asteroid asteroid-two"></div>
+        <div class="hero-ship"><span></span></div>
+        <div class="hero-score"><span>✦</span><div><small>THIS WEEK'S TOP SCORE</small><strong>24,860</strong></div></div>
+        <div class="art-caption">A NEW HIGH SCORE<br><span>IS ALWAYS ONE MORE TRY AWAY</span></div>
+      </div>
+      <div class="hero-index"><span>01</span><span class="index-line"></span><span>04</span></div>
+    </section>
+
+    <section class="stats-strip" aria-label="Arcade stats">
+      <div><span class="stat-icon violet">▦</span><span><strong id="total-count">100</strong><small>GAMES TO EXPLORE</small></span></div>
+      <div><span class="stat-icon cyan">⌁</span><span><strong>0 sec</strong><small>DOWNLOAD TIME</small></span></div>
+      <div><span class="stat-icon pink">♡</span><span><strong id="stat-favorites">0</strong><small>IN YOUR COLLECTION</small></span></div>
+      <div class="stats-note"><span class="sparkle">✦</span> New games added every week</div>
+    </section>
+
+    <section class="library-section" id="library" aria-labelledby="library-title">
+      <div class="section-heading">
+        <div><div class="eyebrow section-eyebrow">FIND YOUR NEXT OBSESSION</div><h2 id="library-title">The arcade <span class="heading-count" id="heading-count">100</span></h2></div>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Find a game..." autocomplete="off"><kbd>⌘ K</kbd></label>
+      </div>
+      <div class="filter-row">
+        <div class="filter-chips" id="category-filters" role="group" aria-label="Filter games by category"></div>
+        <label class="sort-select"><span>Sort by</span><select id="sort-select" aria-label="Sort games"><option value="popular">Popular</option><option value="az">A to Z</option><option value="newest">Recently added</option></select><span class="select-chevron">⌄</span></label>
+      </div>
+      <div class="games-grid" id="games-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden><span>◌</span><h3>No games found</h3><p>Try another search or category.</p></div>
+      <div class="load-more-wrap"><button class="load-more" id="load-more">Load more games <span>↓</span></button><span class="shown-count" id="shown-count"></span></div>
+    </section>
+
+    <section class="bottom-banner">
+      <div class="banner-decoration">✦</div>
+      <div><span class="eyebrow">THE ARCADE IS BETTER TOGETHER</span><h2>Got a minute?<br><span>Make it a high score.</span></h2></div>
+      <button class="banner-button" id="random-game">Surprise me <span>↗</span></button>
+      <div class="banner-orb"></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>playform<span class="brand-period">.</span></span></a><span>MADE FOR THE JOY OF PLAY</span><span>© 2025 PLAYFORM ARCADE</span></footer>
+
+  <div class="game-overlay" id="game-overlay" aria-hidden="true">
+    <section class="game-dialog" role="dialog" aria-modal="true" aria-labelledby="game-title">
+      <header class="game-header">
+        <button class="icon-button close-game" id="close-game" aria-label="Close game">×</button>
+        <div class="game-dialog-name"><span class="game-dialog-category" id="game-category">ARCADE</span><h2 id="game-title">Game title</h2></div>
+        <div class="game-controls"><span class="score-label">SCORE <strong id="game-score">0</strong></span><button class="icon-button" id="pause-game" aria-label="Pause game">Ⅱ</button><button class="icon-button" id="restart-game" aria-label="Restart game">↻</button></div>
+      </header>
+      <div class="canvas-wrap">
+        <canvas id="game-canvas" width="960" height="540" aria-label="Game play area"></canvas>
+        <div class="game-message" id="game-message"><span class="message-icon">✦</span><h3>Ready when you are</h3><p>Press the button and jump right in.</p><button class="primary-button start-button" id="start-game">Let's play <span>→</span></button></div>
+      </div>
+      <footer class="game-footer"><span id="game-instructions">Use your keyboard to play</span><span>HIGH SCORE <strong id="game-high-score">0</strong></span></footer>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
